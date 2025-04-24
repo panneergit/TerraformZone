@@ -57,7 +57,7 @@ module "web-security-group" {
 }
 
 module "db-security-group" {
-  source = "github.com/panneergit/TerraformZone//AWSClouds/Modules/securitygroup"
+  source = "github.com/panneergit/TerraformZone//AWSCloud/Modules/securitygroup"
   securitygroup-info = {
     name             = "DB Security Group"
     description      = "This is db security group"
