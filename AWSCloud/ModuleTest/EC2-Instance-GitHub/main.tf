@@ -1,5 +1,5 @@
 module "vpc" {
-  source = "../Modules/vpc"
+  source = "github.com/panneergit/TerraformZone//AWSCloud/Modules/vpc"
   vpc-info = {
     name = "Ntier-primary"
     cidr = "10.10.0.0/16"
@@ -27,7 +27,7 @@ module "vpc" {
 }
 
 module "web-security-group" {
-  source = "../Modules/securitygroup"
+  source = "github.com/panneergit/TerraformZone//AWSCloud/Modules/securitygroup"
   securitygroup-info = {
     name             = "Web Security Group"
     description      = "This is web security group"
@@ -57,7 +57,7 @@ module "web-security-group" {
 }
 
 module "db-security-group" {
-  source = "../Modules/securitygroup"
+  source = "github.com/panneergit/TerraformZone//AWSClouds/Modules/securitygroup"
   securitygroup-info = {
     name             = "DB Security Group"
     description      = "This is db security group"
@@ -75,7 +75,7 @@ module "db-security-group" {
 }
 
 module "web-instance" {
-  source = "../Modules/ec2"
+  source = "github.com/panneergit/TerraformZone//AWSCloud/Modules/ec2"
   count  = length(var.web-instances)
   instance-info = {
     name              = var.web-instances[count.index].name
@@ -91,7 +91,7 @@ module "web-instance" {
 }
 
 module "db-instance" {
-  source = "../Modules/ec2"
+  source = "github.com/panneergit/TerraformZone//AWSCloud/Modules/ec2"
   count  = length(var.db-instances)
   instance-info = {
     name              = var.db-instances[count.index].name
