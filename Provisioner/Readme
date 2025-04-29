@@ -1,0 +1,25 @@
+### Run Commands
+
+# Initilize provider
+terraform init
+
+# Format script files
+terraform fmt
+
+# Validate the syntax
+terraform validate
+
+# Apply the terraform scripts
+terraform apply
+
+# Apply the terraform scripts without asking confirmation
+terraform apply -auto-approve
+
+# Apply the terraform scripts with variable files
+terraform appy -var-file="dev.tfvars"
+
+# Apply the terraform scripts with variable in cli format
+terraform apply -var "build_id=1"
+
+# Destroy the resources by terraform scripts
+terraform destroy
