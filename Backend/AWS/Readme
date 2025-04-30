@@ -1,0 +1,51 @@
+### Initial Configuration
+
+Following steps need to create in AWS
+1. Create AWS S3 bucket
+    - Enable Versioning
+    - Enable Bucket Key
+    - Modify the S3 bucket policy, if required
+
+2. Create DynamoDB table
+    - Table Name 
+    - Partition Key use "LockID"
+    - Default configuration is enough
+
+3. Backend configuration
+    - In terraform block
+    ---
+    backend "s3" {
+        region         = "us-east-1"
+        bucket         = "myterraformbackendbkt"
+        key            = "terraform/backend/state.lock"
+        dynamodb_table = "terraformstate_locktable"
+    }
+    ---
+
+
+### Run Commands
+
+# Initilize provider
+terraform init
+
+# Format script files
+terraform fmt
+
+# Validate the syntax
+terraform validate
+
+# Apply the terraform scripts
+terraform apply
+
+# Apply the terraform scripts without asking confirmation
+terraform apply -auto-approve
+
+# Apply the terraform scripts with variable files
+terraform appy -var-file="dev.tfvars"
+
+# Apply the terraform scripts with variable in cli format
+terraform apply -var "build_id=1"
+
+# Destroy the resources by terraform scripts
+terraform destroy
+

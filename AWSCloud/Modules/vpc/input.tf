@@ -3,9 +3,9 @@ variable "vpc-info" {
     name = string
     cidr = string
   })
-  description = "This is Ntier VPC Network"
+  description = "This is VPC Network"
   default = {
-    name = "Ntier VPC"
+    name = "This is VPC"
     cidr = "192.168.0.0/16"
   }
 }
