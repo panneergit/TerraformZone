@@ -1,0 +1,64 @@
+### Initial Configuration
+
+Following steps need to create in AWS
+1. Create AWS S3 bucket
+    - Enable Versioning
+    - Enable Bucket Key
+    - Modify the S3 bucket policy, if required
+
+2. Create DynamoDB table
+    - Table Name 
+    - Partition Key use "LockID"
+    - Default configuration is enough
+
+3. Backend configuration
+    - In terraform block
+    ---
+    backend "s3" {
+        region         = "us-east-1"
+        bucket         = "myterrabackendbkt"
+        key            = "terraform/workspacedemo"
+        dynamodb_table = "terraformstate_locktable"
+    }
+    ---
+4. Create workspace for different environment.
+    ### Run Comments
+
+    # List all available workspaces
+    terraform workspace list
+
+    # Create workspace
+    terraform workspace new <NAME>
+
+    # Select Workspace
+    terraform workspace select <DEV/QA>
+
+    # Help
+    terraform workspace --help
+
+
+### Run Commands
+
+# Initilize provider
+terraform init
+
+# Format script files
+terraform fmt
+
+# Validate the syntax
+terraform validate
+
+# Apply the terraform scripts
+terraform apply
+
+# Apply the terraform scripts without asking confirmation
+terraform apply -auto-approve
+
+# Apply the terraform scripts with variable files
+terraform appy -var-file="env/dev.tfvars"
+
+terraform appy -var-file="env/qa.tfvars"
+
+# Destroy the resources by terraform scripts
+terraform destroy
+
