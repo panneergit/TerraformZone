@@ -21,7 +21,7 @@ data "aws_key_pair" "example" {
 
   filter {
     name   = "tag:Name"
-    values = ["My New Key Pair"]
+    values = ["ID RSA"]
   }
 }
 
@@ -43,6 +43,15 @@ data "aws_vpc" "awsvpc" {
     name   = "tag:Name"
     values = ["Default VPC"]
   }
+}
+
+# Subnets
+data "aws_subnets" "subnets" {
+  filter {
+    name   = "vpc-id"
+    values = [data.aws_vpc.awsvpc.id]
+  }
+  depends_on = [data.aws_vpc.awsvpc]
 }
 
 // Security Group
@@ -68,7 +77,7 @@ output "aws_security_group_out" {
 #   // owners = ["125866748812"]
 #   // owners      = ["self"]
 #   // most_recent = true
-  
+
 #   filter {
 #     name   = "name"
 #     values = ["amzn2-ami-hvm-*-x86_64-gp2"] # Filter for specific AMI names

@@ -26,5 +26,4 @@ variable "public-subnet" {
     az   = string
   }))
   description = "This is Public Subnet"
-
 }
